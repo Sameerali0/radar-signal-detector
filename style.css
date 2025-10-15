@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #07121f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radar {
+    width: 400px;
+    height: 400px;
+    background-color: #051419;
+    border-radius: 50%;
+    box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66;
+}
