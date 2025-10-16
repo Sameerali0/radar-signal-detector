@@ -11,8 +11,6 @@ const cx = w / 2;
 const cy = h / 2;
 const radius = w / 2 * 0.9;
 
-
-
 function drawRadar() { 
     ctx.fillStyle = "rgba(7, 18, 31, 0.15)";
     ctx.fillRect(0, 0, w, h);
@@ -54,24 +52,54 @@ const dots = [];
 for (let i = 0; i < 8; i++) {
     const dist = Math.random() * radius * 0.9;
     const dir  = Math.random() * Math.PI * 2;
-    dots.push({ x: cx + Math.cos(dir) * dist,
-        y: cy + Math.sin(dir) * dist, visible : false
+    dots.push({ 
+        x: cx + Math.cos(dir) * dist,
+        y: cy + Math.sin(dir) * dist,
+        visible : false,
+        pulse: 0,
     })
 }
 
 function drawDots() {
-    dots.forEach(dot => {
+    dots.forEach((dot) => {
         const dx = dot.x - cx;
         const dy = dot.y - cy;
         const dotAngle = Math.atan2(dy, dx);
-        const diff = Math.abs(dotAngle - angle);
 
-        dot.visible = diff < 0.2;
+        let diff = Math.abs(dotAngle - angle);
+        if (diff > Math.PI) diff = (Math.PI * 2) - diff;
 
-        ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
-        ctx.fillStyle = dot.visible ? "#00ffcc" : "#00ffcc33"
-        ctx.fill()
+        const detectionRange = 0.15;
+        if (diff < detectionRange) {
+            dot.visible = true;
+            dot.pulse = 1.0;
+        } else {
+            dot.visible = false;
+        }
+
+        if (dot.pulse > 0) {
+            const pulseSize = 4 + dot.pulse * 4;
+            const alpha = dot.pulse;
+
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, pulseSize * 2, 0, Math.PI * 2);
+            ctx.strokeStyle = `rgba(0, 255, 204, ${alpha * 0.3})`;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        
+            ctx.beginPath();
+            ctx.arc(dot.x, dot.y, pulseSize, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 255, 204, ${alpha}`;
+            ctx.fill()
+
+            dot.pulse -= 0.05;
+
+        } else {
+            ctx.beginPath()
+            ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2)
+            ctx.fillStyle = "#00ffcc33";
+            ctx.fill();
+        }
     })
 }
 
