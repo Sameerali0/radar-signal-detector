@@ -22,34 +22,64 @@ function drawRadar() {
     ctx.linetWidth = 2;
     ctx.strokeStyle = "#00ffcc33"
     ctx.stroke();
+
+    for (let i  = 1; i <= 3; i++) {
+        ctx.beginPath()
+        ctx.arc(cx, cy, (radius / 4) * i, 0, Math.PI * 2);
+        ctx.strokeStyle = "#00ffcc22";
+        ctx.stroke()
+    }
 }
 
 let angle = 0;
 
-function drawline() {
-    const endX = cx + radius * Math.cos(angle);
-    const endY = cy + radius * Math.sin(angle);
+function drawLine() {
+    const x = cx +  Math.cos(angle) * radius;
+    const y = cy +  Math.sin(angle) * radius;
 
-    const gradient = ctx.createLinearGradient(cx, cy, endX, endY);
+    const gradient = ctx.createLinearGradient(cx, cy, 0, cx, cy, radius);
     gradient.addColorStop(0, "rgba(0, 255, 204, 0.2)");
     gradient.addColorStop(1, "rgba(0, 255, 204, 1)");
 
     ctx.beginPath()
     ctx.moveTo(cx, cy)
-    ctx.lineTo(endX, endY);
-    ctx.strokeStyle = gradient;
-    ctx.linetWidth = 3;
+    ctx.lineTo(x, y);
+    ctx.strokeStyle = "#00ffcc88";
     ctx.stroke();
+}
+
+const dots = [];
+
+for (let i = 0; i < 8; i++) {
+    const dist = Math.random() * radius * 0.9;
+    const dir  = Math.random() * Math.PI * 2;
+    dots.push({ x: cx + Math.cos(dir) * dist,
+        y: cy + Math.sin(dir) * dist, visible : false
+    })
+}
+
+function drawDots() {
+    dots.forEach(dot => {
+        const dx = dot.x - cx;
+        const dy = dot.y - cy;
+        const dotAngle = Math.atan2(dy, dx);
+        const diff = Math.abs(dotAngle - angle);
+
+        dot.visible = diff < 0.2;
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2);
+        ctx.fillStyle = dot.visible ? "#00ffcc" : "#00ffcc33"
+        ctx.fill()
+    })
 }
 
 function animate() {
     drawRadar();
-    drawline();
-
+    drawLine();
+    drawDots();
     angle += 0.03;
-    if (angle > Math.PI * 2) {
-        angle = 0;
-    }
+    
     requestAnimationFrame(animate);
 }
 
