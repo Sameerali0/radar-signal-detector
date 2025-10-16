@@ -14,9 +14,9 @@ body {
 }
 
 .radar {
-    width: 400px;
-    height: 400px;
-    background-color: #051419;
+    width: 500px;
+    height: 500px;
+    background-color: #092630;
     border-radius: 50%;
     box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66;
 }
