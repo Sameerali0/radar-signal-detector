@@ -77,6 +77,13 @@ function drawDots() {
             dot.visible = false;
         }
 
+        if (Math.random() < 0.02) {
+            const moveAngle = Math.random() * Math.PI * 2;
+            const moveDist = Math.random() * 4 - 2;
+            dot.x += Math.cos(moveAngle) * moveDist;
+            dot.y += Math.sin(moveAngle) * moveDist;
+        }
+
         if (dot.pulse > 0) {
             const pulseSize = 4 + dot.pulse * 4;
             const alpha = dot.pulse;
@@ -89,7 +96,7 @@ function drawDots() {
         
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 255, 204, ${alpha}`;
+            ctx.fillStyle = `rgba(0, 255, 204, ${alpha})`;
             ctx.fill()
 
             dot.pulse -= 0.05;
