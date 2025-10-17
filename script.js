@@ -12,7 +12,7 @@ const cy = h / 2;
 const radius = w / 2 * 0.9;
 
 function drawRadar() { 
-    ctx.fillStyle = "rgba(7, 18, 31, 0.15)";
+    ctx.fillStyle = "#07121f";
     ctx.fillRect(0, 0, w, h);
 
     ctx.beginPath();
@@ -36,15 +36,49 @@ function drawLine() {
     const x = cx +  Math.cos(angle) * radius;
     const y = cy +  Math.sin(angle) * radius;
 
-    const gradient = ctx.createLinearGradient(cx, cy, 0, cx, cy, radius);
-    gradient.addColorStop(0, "rgba(0, 255, 204, 0.2)");
-    gradient.addColorStop(1, "rgba(0, 255, 204, 1)");
+    const sweepWidth = Math.PI / 25;
+    const startAngle = angle - sweepWidth / 2;
+    const endAngle = angle + sweepWidth / 2;
+
+    const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+    gradient.addColorStop(0, "rgba(0, 255, 204, 0.0)");
+    gradient.addColorStop(0.7, "rgba(0, 255, 204, 0.05)");
+    gradient.addColorStop(1, "rgba(0, 255, 204, 0.25)");
+
+    ctx.beginPath()
+    ctx.moveTo(cx, cy);
+    ctx.arc(cx, cy, radius, startAngle, endAngle);
+    ctx.closePath()
+    ctx.fillStyle = gradient;
+    ctx.fill();
 
     ctx.beginPath()
     ctx.moveTo(cx, cy)
     ctx.lineTo(x, y);
     ctx.strokeStyle = "#00ffcc88";
+    ctx.lineWidth = 2;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#00ffcc";
     ctx.stroke();
+    ctx.shadowBlur = 0;
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, 16, 0, Math.PI * 2);
+    const centerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 16);
+    centerGlow.addColorStop(0, "rgba(0,255,204,0.9)");
+    centerGlow.addColorStop(0.4, "rgba(0,255,204,0.6)");
+    centerGlow.addColorStop(1, "rgba(0,255,204,0)");
+    ctx.fillStyle = centerGlow;
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(0, 255, 204, 0.4)";
+    ctx.lineWidth = 2;
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = "#00ffccff";
+    ctx.stroke();
+    ctx.shadowBlur = 0;
 }
 
 const dots = [];
