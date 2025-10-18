@@ -91,7 +91,37 @@ for (let i = 0; i < 8; i++) {
         y: cy + Math.sin(dir) * dist,
         visible : false,
         pulse: 0,
+        user: null,
     })
+}
+
+async function fetchRandomUser(dot) {
+  try {
+      dot.user = {
+      name: "Scanning...",
+      country: "",
+      imgObj: null,
+      imgLoaded: false,
+    };
+
+    const res = await fetch("https://randomuser.me/api/");
+    const data = await res.json();
+    const user = data.results[0];
+
+    const img = new Image();
+    img.src = user.picture.thumbnail;
+
+    dot.user.name = `${user.name.first} ${user.name.last}`;
+    dot.user.country = user.location.country
+    dot.user.imgObj = img;
+
+    img.onload = () => {
+      dot.user.imgLoaded = true
+    };
+
+  } catch (err) {
+    console.error("User fetch error:", err)
+  }
 }
 
 function drawDots() {
@@ -105,8 +135,11 @@ function drawDots() {
 
         const detectionRange = 0.15;
         if (diff < detectionRange) {
+          if (!dot.visible) {
             dot.visible = true;
             dot.pulse = 1.0;
+            if (!dot.user) fetchRandomUser(dot);
+          }
         } else {
             dot.visible = false;
         }
@@ -134,6 +167,17 @@ function drawDots() {
             ctx.fill()
 
             dot.pulse -= 0.05;
+
+            if (dot.user) {
+              ctx.font = "14px Arial";
+              ctx.fillStyle = "#00ffcc";
+              ctx.fillText(dot.user.name, dot.x + 10, dot.y - 10)
+              ctx.fillText(dot.user.country, dot.x + 10, dot.y + 10)
+
+              if (dot.user.imgObj && dot.user.imgLoaded) {
+                   ctx.drawImage(dot.user.imgObj, dot.x - 20, dot.y - 60, 30, 30)
+                  }
+              } 
 
         } else {
             ctx.beginPath()
