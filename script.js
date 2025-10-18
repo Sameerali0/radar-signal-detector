@@ -85,6 +85,8 @@ function drawLine() {
 
 const dots = [];
 
+function generateDots() {
+  dots.length = 0;
 for (let i = 0; i < 8; i++) {
     const dist = Math.random() * radius * 0.9;
     const dir  = Math.random() * Math.PI * 2;
@@ -94,8 +96,13 @@ for (let i = 0; i < 8; i++) {
         visible : false,
         pulse: 0,
         user: null,
+        opacity: 0,
     })
+  }
 }
+
+generateDots();
+setInterval(generateDots, 8000);
 
 async function fetchRandomUser(dot) {
   try {
@@ -161,6 +168,8 @@ function drawDots() {
             dot.visible = false;
         }
 
+        if (dot.opacity < 1) dot.opacity += 0.02;
+
         if (Math.random() < 0.02) {
             const moveAngle = Math.random() * Math.PI * 2;
             const moveDist = Math.random() * 4 - 2;
@@ -170,7 +179,7 @@ function drawDots() {
 
         if (dot.pulse > 0) {
             const pulseSize = 4 + dot.pulse * 4;
-            const alpha = dot.pulse;
+            const alpha = dot.pulse * dot.opacity;
 
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize * 2, 0, Math.PI * 2);
@@ -199,8 +208,19 @@ function drawDots() {
         } else {
             ctx.beginPath()
             ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2)
-            ctx.fillStyle = "#00ffcc33";
+            ctx.fillStyle = `rgba(0, 255, 204, ${0.33 * dot.opacity})`;
             ctx.fill();
+
+            if (dot.user && dot.user.name !== "Scanning...") {
+                ctx.font = "14px Arial";
+                ctx.fillStyle = "#00ffcc";
+                ctx.fillText(dot.user.name, dot.x + 10, dot.y - 10)
+                ctx.fillText(dot.user.country, dot.x + 10, dot.y + 10)
+
+                if (dot.user.imgObj && dot.user.imgLoaded) {
+                    ctx.drawImage(dot.user.imgObj, dot.x - 20, dot.y - 60, 30, 30)
+                }
+            }
         }
     })
 }
@@ -208,14 +228,14 @@ function drawDots() {
 function animate() {
     drawRadar();
     drawLine();
-    drawDots();
 
     if (!paused) {
-    angle += 0.03;
-    if (angle > Math.PI * 2) {
-        angle = 0;
+        drawDots();
+        angle += 0.02;
+        if (angle > Math.PI * 2) {
+            angle = 0;
+        }
     }
-}
     requestAnimationFrame(animate);
 }
 
