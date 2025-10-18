@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas class="radar" id="radar"></canvas>
+    <div class="container">
+        <canvas class="radar" id="radar"></canvas>
+
+        <div class="detection-list" id="detectionList">
+            <h2>Detected Signals</h2>
+            <ul id="detectedItems"></ul>
+        </div>
+    </div>
 
     <div class="controls">
         <button id="pauseBtn">Pause</button>

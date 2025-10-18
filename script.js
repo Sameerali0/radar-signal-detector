@@ -1,5 +1,6 @@
 const canvas = document.getElementById("radar");
 const ctx = canvas.getContext("2d");
+const detectedNames = new Set();
 
 canvas.width = canvas.clientWidth* devicePixelRatio;
 canvas.height = canvas.clientHeight * devicePixelRatio;
@@ -117,8 +118,23 @@ async function fetchRandomUser(dot) {
     dot.user.imgObj = img;
 
     img.onload = () => {
-      dot.user.imgLoaded = true
-    };
+        dot.user.imgLoaded = true
+    }
+
+        const detectedItems = document.getElementById("detectedItems")
+        const li = document.createElement("li")
+        li.innerHTML = `
+        <img src="${user.picture.thumbnail}" alt="User">
+        <div>
+            <div>${dot.user.name}</div>
+            <small>${dot.user.country}</small>
+        </div>
+        `;
+
+        if (!detectedNames.has(dot.user.name)) {
+            detectedNames.add(dot.user.name);
+            detectedItems.prepend(li)
+        }    
 
   } catch (err) {
     console.error("User fetch error:", err)
