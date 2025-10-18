@@ -20,3 +20,24 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66;
 }
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    background: #00ffcc;
+    color: #07121f;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: 0.2s ease;
+}
+
+button:hover {
+    background: #00d4aa;
+}

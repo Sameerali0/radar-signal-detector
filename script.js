@@ -31,6 +31,7 @@ function drawRadar() {
 }
 
 let angle = 0;
+let paused = false;
 
 function drawLine() {
     const x = cx +  Math.cos(angle) * radius;
@@ -192,12 +193,22 @@ function animate() {
     drawRadar();
     drawLine();
     drawDots();
+
+    if (!paused) {
     angle += 0.03;
     if (angle > Math.PI * 2) {
         angle = 0;
     }
-
+}
     requestAnimationFrame(animate);
 }
 
 animate()
+
+document.getElementById("pauseBtn").addEventListener("click", () =>{
+    paused = true;
+})
+
+document.getElementById("resumeBtn").addEventListener("click", () =>{
+    paused = false;
+})
