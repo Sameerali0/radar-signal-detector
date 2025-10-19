@@ -16,7 +16,7 @@ body {
 .container {
     display: flex;
     align-items: flex-start;
-    gap: 50px;
+    gap: 250px;
     background: #092630;
     padding: 30px;
     border-radius: 20px;
