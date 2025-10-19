@@ -33,6 +33,7 @@ function drawRadar() {
 
 let angle = 0;
 let paused = false;
+let scanning = false;
 
 function drawLine() {
     const x = cx +  Math.cos(angle) * radius;
@@ -229,7 +230,7 @@ function animate() {
     drawRadar();
     drawLine();
 
-    if (!paused) {
+    if (scanning && !paused) {
         drawDots();
         angle += 0.02;
         if (angle > Math.PI * 2) {
@@ -241,10 +242,25 @@ function animate() {
 
 animate()
 
-document.getElementById("pauseBtn").addEventListener("click", () =>{
-    paused = true;
+const startBtn = document.getElementById("startBtn")
+const pauseBtn = document.getElementById("pauseBtn")
+const resumeBtn = document.getElementById("resumeBtn")
+
+startBtn.addEventListener("click", () => {
+    if (!scanning) {
+        scanning = true;
+        paused = false
+        startBtn.disabled = true
+        pauseBtn.disabled = false
+        resumeBtn.disabled = false;
+        startBtn.textContent = "Scanning...";
+    }
 })
 
-document.getElementById("resumeBtn").addEventListener("click", () =>{
-    paused = false;
+pauseBtn.addEventListener("click", () =>{
+   if (scanning) paused = true;
+})
+
+resumeBtn.addEventListener("click", () =>{
+   if (scanning) paused = false;
 })
