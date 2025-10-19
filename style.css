@@ -5,18 +5,28 @@
 }
 
 body {
-    margin: 0;
     height: 100vh;
     background-color: #07121f;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Arial, sans-serif;
 }
 
 .container {
     display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    background: #092630;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00ffcc22 inset, 0 0 25px #00ffcc44;
+}
+
+.radar-section {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 40px;
 }
 
 .radar {
@@ -29,9 +39,8 @@ body {
 
 .detection-list {
     color: #00ffcc;
-    font-family: Arial, sans-serif;
-    width: 220px;
-    background: #092630;
+    width: 230px;
+    background: #081b24;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 0 20px #00ffcc33 inset;
@@ -46,7 +55,7 @@ body {
 .detection-list ul {
     list-style: none;
     padding: 0;
-    max-height: 400px;
+    max-height: 480px;
     overflow-y: auto;
 }
 
@@ -67,18 +76,19 @@ body {
 
 .controls {
     margin-top: 20px;
+    display: flex;
+    gap: 15px;
 }
 
 button {
     background: #00ffcc;
     color: #07121f;
     border: none;
-    padding: 10px 20px;
+    padding: 10px 22px;
     font-size: 16px;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    margin: 0 10px;
     transition: 0.2s ease;
 }
 
