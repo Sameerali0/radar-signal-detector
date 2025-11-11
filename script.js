@@ -13,20 +13,20 @@ const cy = h / 2;
 const radius = w / 2 * 0.9;
 
 function drawRadar() { 
-    ctx.fillStyle = "#07121f";
+    ctx.fillStyle = "#082209ff";
     ctx.fillRect(0, 0, w, h);
 
     ctx.beginPath();
     ctx.arc(cx, cy, radius, 0, Math.PI * 2);
     
     ctx.lineWidth = 2;
-    ctx.strokeStyle = "#00ffcc33";
+    ctx.strokeStyle = "#0a530f";
     ctx.stroke();
 
     for (let i  = 1; i <= 3; i++) {
         ctx.beginPath()
         ctx.arc(cx, cy, (radius / 4) * i, 0, Math.PI * 2);
-        ctx.strokeStyle = "#00ffcc22";
+        ctx.strokeStyle = "#0a530f";
         ctx.stroke()
     }
 }
@@ -44,9 +44,9 @@ function drawLine() {
     const endAngle = angle + sweepWidth / 2;
 
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-    gradient.addColorStop(0, "rgba(0, 255, 204, 0.0)");
-    gradient.addColorStop(0.7, "rgba(0, 255, 204, 0.05)");
-    gradient.addColorStop(1, "rgba(0, 255, 204, 0.25)");
+    gradient.addColorStop(0, "#0a7a12ff");
+    gradient.addColorStop(0.7, "#0a530f");
+    gradient.addColorStop(1, "#fff");
 
     ctx.beginPath()
     ctx.moveTo(cx, cy);
@@ -58,28 +58,28 @@ function drawLine() {
     ctx.beginPath()
     ctx.moveTo(cx, cy)
     ctx.lineTo(x, y);
-    ctx.strokeStyle = "#00ffcc88";
+    ctx.strokeStyle = "#0a530f";
     ctx.lineWidth = 2;
     ctx.shadowBlur = 10;
-    ctx.shadowColor = "#00ffcc";
+    ctx.shadowColor = "#fff";
     ctx.stroke();
     ctx.shadowBlur = 0;
 
     ctx.beginPath();
     ctx.arc(cx, cy, 16, 0, Math.PI * 2);
     const centerGlow = ctx.createRadialGradient(cx, cy, 0, cx, cy, 16);
-    centerGlow.addColorStop(0, "rgba(0,255,204,0.9)");
-    centerGlow.addColorStop(0.4, "rgba(0,255,204,0.6)");
-    centerGlow.addColorStop(1, "rgba(0,255,204,0)");
+    centerGlow.addColorStop(0, "#0c9115ff");
+    centerGlow.addColorStop(0.4, "#0a530f");
+    centerGlow.addColorStop(1, "#0a530f");
     ctx.fillStyle = centerGlow;
     ctx.fill();
 
     ctx.beginPath();
     ctx.arc(cx, cy, 22, 0, Math.PI * 2);
-    ctx.strokeStyle = "rgba(0, 255, 204, 0.4)";
+    ctx.strokeStyle = "#a59898ff";
     ctx.lineWidth = 2;
     ctx.shadowBlur = 15;
-    ctx.shadowColor = "#00ffccff";
+    ctx.shadowColor = "#849c86ff";
     ctx.stroke();
     ctx.shadowBlur = 0;
 }
@@ -197,7 +197,7 @@ function drawDots() {
 
             if (dot.user) {
               ctx.font = "14px Arial";
-              ctx.fillStyle = "#00ffcc";
+              ctx.fillStyle = "#0a530f";
               ctx.fillText(dot.user.name, dot.x + 10, dot.y - 10)
               ctx.fillText(dot.user.country, dot.x + 10, dot.y + 10)
 
@@ -209,12 +209,12 @@ function drawDots() {
         } else {
             ctx.beginPath()
             ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2)
-            ctx.fillStyle = `rgba(0, 255, 204, ${0.33 * dot.opacity})`;
+            ctx.fillStyle = `rgba(0, 255, 204, f${0.33 * dot.opacity})`;
             ctx.fill();
 
             if (dot.user && dot.user.name !== "Scanning...") {
                 ctx.font = "14px Arial";
-                ctx.fillStyle = "#00ffcc";
+                ctx.fillStyle = "#fff";
                 ctx.fillText(dot.user.name, dot.x + 10, dot.y - 10)
                 ctx.fillText(dot.user.country, dot.x + 10, dot.y + 10)
 

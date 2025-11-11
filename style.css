@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    background-color: #07121f;
+    /* background-color: rgb(3, 63, 3); */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,10 +17,10 @@ body {
     display: flex;
     align-items: flex-start;
     gap: 250px;
-    background: #092630;
+    /* background: #092630; */
     padding: 30px;
     border-radius: 20px;
-    box-shadow: 0 0 30px #00ffcc22 inset, 0 0 25px #00ffcc44;
+    /* box-shadow: 0 0 30px #00ffcc22 inset, 0 0 25px #00ffcc44; */
 }
 
 .radar-section {
@@ -32,24 +32,26 @@ body {
 .radar {
     width: 500px;
     height: 500px;
-    background-color: #092630;
+    /* background-color: #092630; */
     border-radius: 50%;
-    box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66;
+    /* box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66; */
 }
 
 .detection-list {
-    color: #00ffcc;
-    width: 230px;
-    background: #081b24;
+    /* color: #00ffcc; */
+    color: white;
+    width: 300px;
+    background: #000000;
     border-radius: 10px;
     padding: 15px;
-    box-shadow: 0 0 20px #00ffcc33 inset;
+    /* box-shadow: 0 0 20px #00ffcc33 inset; */
 }
 
 .detection-list h2 {
     font-size: 18px;
     margin-bottom: 10px;
     text-align: center;
+    color: #0a530f;
 }
 
 .detection-list ul {
@@ -63,7 +65,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    border-bottom: 1px solid #00ffcc33;
+    /* border-bottom: 1px solid #00ffcc33; */
     padding-bottom: 5px;
 }
 
@@ -81,8 +83,8 @@ body {
 }
 
 button {
-    background: #00ffcc;
-    color: #07121f;
+    background: rgb(3, 34, 3);
+    color: white;
     border: none;
     padding: 10px 22px;
     font-size: 16px;
@@ -93,7 +95,7 @@ button {
 }
 
 button:hover {
-    background: #00d4aa;
+    background: #0a530f;
 }
 
 button:disabled {
