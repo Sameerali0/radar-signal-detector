@@ -15,12 +15,7 @@ body {
 
 .container {
     display: flex;
-    align-items: flex-start;
-    gap: 250px;
-    /* background: #092630; */
-    padding: 30px;
-    border-radius: 20px;
-    /* box-shadow: 0 0 30px #00ffcc22 inset, 0 0 25px #00ffcc44; */
+    gap: 320px;
 }
 
 .radar-section {
@@ -32,19 +27,15 @@ body {
 .radar {
     width: 500px;
     height: 500px;
-    /* background-color: #092630; */
     border-radius: 50%;
-    /* box-shadow: 0 0 30px #00ffcc33 inset, 0 0 20px #00ffcc66; */
 }
 
 .detection-list {
-    /* color: #00ffcc; */
     color: white;
     width: 300px;
     background: rgb(3, 34, 3);
     border-radius: 10px;
     padding: 15px;
-    /* box-shadow: 0 0 20px #00ffcc33 inset; */
 }
 
 .detection-list h2 {
@@ -65,7 +56,6 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    /* border-bottom: 1px solid #00ffcc33; */
     padding-bottom: 5px;
 }
 

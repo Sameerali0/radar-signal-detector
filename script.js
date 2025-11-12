@@ -1,10 +1,12 @@
 const canvas = document.getElementById("radar");
 const ctx = canvas.getContext("2d");
+const startBtn = document.getElementById("startBtn")
+const pauseBtn = document.getElementById("pauseBtn")
+const resumeBtn = document.getElementById("resumeBtn")
 const detectedNames = new Set();
 
 canvas.width = canvas.clientWidth* devicePixelRatio;
 canvas.height = canvas.clientHeight * devicePixelRatio;
-ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
 
 const w = canvas.width / devicePixelRatio;
 const h = canvas.height / devicePixelRatio;
@@ -60,10 +62,9 @@ function drawLine() {
     ctx.lineTo(x, y);
     ctx.strokeStyle = "#0a530f";
     ctx.lineWidth = 2;
-    ctx.shadowBlur = 10;
     ctx.shadowColor = "#fff";
     ctx.stroke();
-    ctx.shadowBlur = 0;
+
 
     ctx.beginPath();
     ctx.arc(cx, cy, 16, 0, Math.PI * 2);
@@ -78,10 +79,8 @@ function drawLine() {
     ctx.arc(cx, cy, 22, 0, Math.PI * 2);
     ctx.strokeStyle = "#a59898ff";
     ctx.lineWidth = 2;
-    ctx.shadowBlur = 15;
     ctx.shadowColor = "#849c86ff";
     ctx.stroke();
-    ctx.shadowBlur = 0;
 }
 
 const dots = [];
@@ -195,7 +194,6 @@ function drawDots() {
             ctx.fillStyle = `rgba(0, 255, 0, ${alpha * 0.9})`;
             ctx.fill()
 
-            ctx.shadowBlur= 0 
             dot.pulse -= 0.05;
 
             if (dot.user) {
@@ -245,9 +243,7 @@ function animate() {
 
 animate()
 
-const startBtn = document.getElementById("startBtn")
-const pauseBtn = document.getElementById("pauseBtn")
-const resumeBtn = document.getElementById("resumeBtn")
+
 
 startBtn.addEventListener("click", () => {
     if (!scanning) {
