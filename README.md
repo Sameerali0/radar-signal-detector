@@ -1,6 +1,6 @@
 # Radar Signal Detector
 
-This project is a Radar Signal Detector that shows a radar animation scanning the area and detecting random signals as glowing dots on the screen. Each detected signal displays a random user’s name, country, and picture using the RandomUser API. The project includes a Start Scanning button that activates the radar manually, along with Pause and Resume buttons to control its movement. It’s a fun and interactive project that combines canvas animation with real-time data fetching, designed to look visually appealing with a glowing radar effect.
+This is radar signal detector it displays dots on a radar and when the scanning line pass over a dot it detects the signal i use the Random user API to show name and profile images the detected persons name and image show on radar and also  added on the detection list . The detector includes pause and resume button to control the sccaning process.
 
 ## Built with
 - HTML
