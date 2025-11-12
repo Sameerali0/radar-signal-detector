@@ -184,20 +184,23 @@ function drawDots() {
 
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize * 2, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(0, 255, 204, ${alpha * 0.3})`;
+            ctx.strokeStyle = `rgba(0, 255, 0, ${alpha * 0.6})`;
             ctx.lineWidth = 2;
+            ctx.shadowBlur=20
+            ctx.shadowColor ="#27b814ff";
             ctx.stroke();
         
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 255, 204, ${alpha})`;
+            ctx.fillStyle = `rgba(0, 255, 0, ${alpha * 0.9})`;
             ctx.fill()
 
+            ctx.shadowBlur= 0 
             dot.pulse -= 0.05;
 
             if (dot.user) {
               ctx.font = "14px Arial";
-              ctx.fillStyle = "#0a530f";
+              ctx.fillStyle = "#fff";
               ctx.fillText(dot.user.name, dot.x + 10, dot.y - 10)
               ctx.fillText(dot.user.country, dot.x + 10, dot.y + 10)
 
@@ -209,7 +212,7 @@ function drawDots() {
         } else {
             ctx.beginPath()
             ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2)
-            ctx.fillStyle = `rgba(0, 255, 204, f${0.33 * dot.opacity})`;
+            ctx.fillStyle = `rgba(255, 255, 255, ${0.33 * dot.opacity})`;
             ctx.fill();
 
             if (dot.user && dot.user.name !== "Scanning...") {

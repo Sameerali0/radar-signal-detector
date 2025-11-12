@@ -6,7 +6,7 @@
 
 body {
     height: 100vh;
-    /* background-color: rgb(3, 63, 3); */
+    background-color: rgb(74, 107, 74);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,17 +41,17 @@ body {
     /* color: #00ffcc; */
     color: white;
     width: 300px;
-    background: #000000;
+    background: rgb(3, 34, 3);
     border-radius: 10px;
     padding: 15px;
     /* box-shadow: 0 0 20px #00ffcc33 inset; */
 }
 
 .detection-list h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 25px;
+    margin-bottom: 15px;
     text-align: center;
-    color: #0a530f;
+    color: white;
 }
 
 .detection-list ul {
