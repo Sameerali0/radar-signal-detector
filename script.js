@@ -26,10 +26,12 @@ function drawRadar() {
     ctx.stroke();
 
     for (let i  = 1; i <= 3; i++) {
+
         ctx.beginPath()
         ctx.arc(cx, cy, (radius / 4) * i, 0, Math.PI * 2);
         ctx.strokeStyle = "#0a530f";
         ctx.stroke()
+
     }
 }
 
@@ -105,17 +107,18 @@ generateDots();
 setInterval(generateDots, 8000);
 
 async function fetchRandomUser(dot) {
-  try {
-      dot.user = {
-      name: "Scanning...",
-      country: "",
-      imgObj: null,
-      imgLoaded: false,
-    };
 
-    const res = await fetch("https://randomuser.me/api/");
-    const data = await res.json();
-    const user = data.results[0];
+        try {
+        dot.user = {
+        name: "Scanning...",
+        country: "",
+        imgObj: null,
+        imgLoaded: false,
+        };
+
+        const res = await fetch("https://randomuser.me/api/");
+        const data = await res.json();
+        const user = data.results[0];
 
     const img = new Image();
     img.src = user.picture.thumbnail;
@@ -146,6 +149,8 @@ async function fetchRandomUser(dot) {
   } catch (err) {
     console.error("User fetch error:", err)
   }
+
+
 }
 
 function drawDots() {
@@ -183,7 +188,7 @@ function drawDots() {
 
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize * 2, 0, Math.PI * 2);
-            ctx.strokeStyle = `rgba(0, 255, 0, ${alpha * 0.6})`;
+
             ctx.lineWidth = 2;
             ctx.shadowBlur=20
             ctx.shadowColor ="#27b814ff";

@@ -15,13 +15,6 @@ body {
 
 .container {
     display: flex;
-    gap: 320px;
-}
-
-.radar-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .radar {
@@ -67,9 +60,8 @@ body {
 }
 
 .controls {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
+    margin-top: 40%;
+    padding-right: 40px;
 }
 
 button {
@@ -81,7 +73,7 @@ button {
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
-    transition: 0.2s ease;
+    margin-left: 10px;
 }
 
 button:hover {
