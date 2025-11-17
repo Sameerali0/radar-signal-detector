@@ -15,7 +15,7 @@ const cy = h / 2;
 const radius = w / 2 * 0.9;
 
 function drawRadar() { 
-    ctx.fillStyle = "#082209ff";
+    ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, w, h);
 
     ctx.beginPath();
@@ -48,9 +48,8 @@ function drawLine() {
     const endAngle = angle + sweepWidth / 2;
 
     const gradient = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-    gradient.addColorStop(0, "#0a7a12ff");
-    gradient.addColorStop(0.7, "#0a530f");
-    gradient.addColorStop(1, "#fff");
+    gradient.addColorStop(1, "rgba(51, 107, 40, 0.75)");
+    gradient.addColorStop(1, "rgba(12, 187, 12, 0.01)");
 
     ctx.beginPath()
     ctx.moveTo(cx, cy);
@@ -62,9 +61,8 @@ function drawLine() {
     ctx.beginPath()
     ctx.moveTo(cx, cy)
     ctx.lineTo(x, y);
-    ctx.strokeStyle = "#0a530f";
+    ctx.strokeStyle = "#27642bff";
     ctx.lineWidth = 2;
-    ctx.shadowColor = "#fff";
     ctx.stroke();
 
 
@@ -79,9 +77,8 @@ function drawLine() {
 
     ctx.beginPath();
     ctx.arc(cx, cy, 22, 0, Math.PI * 2);
-    ctx.strokeStyle = "#a59898ff";
+    ctx.strokeStyle = "#0a530f";
     ctx.lineWidth = 2;
-    ctx.shadowColor = "#849c86ff";
     ctx.stroke();
 }
 
@@ -189,14 +186,14 @@ function drawDots() {
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize * 2, 0, Math.PI * 2);
 
+            ctx.strokeStyle = "red";
             ctx.lineWidth = 2;
-            ctx.shadowBlur=20
-            ctx.shadowColor ="#27b814ff";
+
             ctx.stroke();
         
             ctx.beginPath();
             ctx.arc(dot.x, dot.y, pulseSize, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0, 255, 0, ${alpha * 0.9})`;
+            ctx.fillStyle = `rgba(255, 0, 0, ${alpha * 0.9})`;
             ctx.fill()
 
             dot.pulse -= 0.05;
@@ -215,7 +212,7 @@ function drawDots() {
         } else {
             ctx.beginPath()
             ctx.arc(dot.x, dot.y, 4, 0, Math.PI * 2)
-            ctx.fillStyle = `rgba(255, 255, 255, ${0.33 * dot.opacity})`;
+            ctx.fillStyle = `rgba(255, 0, 0, ${0.5 * dot.opacity})`;
             ctx.fill();
 
             if (dot.user && dot.user.name !== "Scanning...") {
