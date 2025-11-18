@@ -3,6 +3,9 @@ const ctx = canvas.getContext("2d");
 const startBtn = document.getElementById("startBtn")
 const pauseBtn = document.getElementById("pauseBtn")
 const resumeBtn = document.getElementById("resumeBtn")
+const enterScreen= document.getElementById("enterScreen")
+const enterBtn = document.getElementById("enterBtn")
+
 const detectedNames = new Set();
 
 canvas.width = canvas.clientWidth* devicePixelRatio;
@@ -264,4 +267,10 @@ pauseBtn.addEventListener("click", () =>{
 
 resumeBtn.addEventListener("click", () =>{
    if (scanning) paused = false;
+})
+
+enterBtn.addEventListener("click", ()=>{
+
+    enterScreen.style.display="none"
+
 })

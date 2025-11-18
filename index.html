@@ -7,20 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="radar-section">
-            <canvas class="radar" id="radar"></canvas>
+    <div id="mainContainer">
+        <h1>Radar Signal Detector</h1>
+
+        <div id="enterScreen" class="enter-screen">
+            <button id="enterBtn">Enter</button>
         </div>
 
-        <div class="controls">
-            <button id="startBtn">Start Scanning</button>
-            <button id="pauseBtn">Pause</button>
-            <button id="resumeBtn">Resume</button>
-        </div>
+        <div id="radarContainer" class="radar-container">
+            <div class="detection-list" id="detectionList">
+                <h2>Detected Signals</h2>
+                <ul id="detectedItems"></ul>
+            </div>
 
-        <div class="detection-list" id="detectionList">
-            <h2>Detected Signals</h2>
-            <ul id="detectedItems"></ul>
+            <div class="controls">
+                <button id="startBtn">Start Scanning</button>
+                <button id="pauseBtn">Pause</button>
+                <button id="resumeBtn">Resume</button>
+            </div>
+
+            <div class="radar-section">
+                <canvas class="radar" id="radar"></canvas>
+            </div>
         </div>
     </div>
 
