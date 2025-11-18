@@ -9,6 +9,3 @@ This is radar signal detector it displays dots on a radar and when the scanning 
 
 ## Screenshot
 ![Radar Signal Detector Screenshot](images/Screenshot.png)
-
-## After changes Screenshot
-![Radar Signal Detector Screenshot](images/afterChangesScreenshot.png)
